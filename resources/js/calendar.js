@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Helper function to format date for datetime-local input
-    function formatDateForInput(date, isNewEvent = false) {
+    function formatDateForInput(date, isNewEvent = true) {
         if (!date) return '';
         const eventDate = new Date(date);
         if (isNewEvent) {
