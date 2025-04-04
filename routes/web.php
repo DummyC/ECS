@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\EventController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -10,6 +11,12 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/events', [EventController::class, 'index']);
+Route::post('/events', [EventController::class, 'store']);
+Route::put('/events/{id}', [EventController::class, 'update']);
+Route::delete('/events/{id}', [EventController::class, 'destroy']);
+
 
 Route::get('/settings', function () {
     return view('settings');
