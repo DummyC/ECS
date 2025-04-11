@@ -14,6 +14,12 @@
         <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/calendar.js'])
+        <style>
+            /* Custom styles for event hover */
+            .fc-event:hover {
+                background-color: #319795 !important; /* Darkened color for hover */
+            }
+        </style>
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">

@@ -1,12 +1,13 @@
 import { Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
+import timeGridPlugin from '@fullcalendar/timegrid';
 
 document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
 
     var calendar = new Calendar(calendarEl, {
-        plugins: [ dayGridPlugin, interactionPlugin ],
+        plugins: [ dayGridPlugin, interactionPlugin, timeGridPlugin ],
         headerToolbar: {
             left: 'prev,next today',
             center: 'title',
@@ -25,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('eventEnd').value = formatDateForInput(info.end, true);
             document.getElementById('allDay').checked = false;
             document.getElementById('deleteEvent').classList.add('hidden');
+            toggleDateTimeInputs();
         },
         eventClick: function(info) {
             // Open modal for editing an existing event
@@ -36,6 +38,17 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('eventEnd').value = formatDateForInput(info.event.end);
             document.getElementById('allDay').checked = info.event.allDay;
             document.getElementById('deleteEvent').classList.remove('hidden');
+            toggleDateTimeInputs();
+        },
+        eventMouseEnter: function(info) {
+            // Change cursor to pointer and darken background
+            info.el.style.cursor = 'pointer';
+            info.el.style.backgroundColor = '#319795'; // Darkened color for hover
+        },
+        eventMouseLeave: function(info) {
+            // Reset cursor and background
+            info.el.style.cursor = '';
+            info.el.style.backgroundColor = ''; // Reset to default color
         }
     });
 
@@ -121,15 +134,27 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // Handle allDay checkbox change
+    document.getElementById('allDay').addEventListener('change', function() {
+        toggleDateTimeInputs();
+    });
+
     // Helper function to format date for datetime-local input
     function formatDateForInput(date, isNewEvent = true) {
         if (!date) return '';
         const eventDate = new Date(date);
         if (isNewEvent) {
-            const offset = 8 * 60; // UTC+8 offset in minutes
+            const offset = 8 * 60;
             const adjustedDate = new Date(eventDate.getTime() + (offset * 60 * 1000));
             return adjustedDate.toISOString().slice(0, 16); // Format to YYYY-MM-DDTHH:MM
         }
         return eventDate.toISOString().slice(0, 16); // Format to YYYY-MM-DDTHH:MM
+    }
+
+    // Helper function to toggle visibility of date time inputs
+    function toggleDateTimeInputs() {
+        const isAllDay = document.getElementById('allDay').checked;
+        document.getElementById('eventStart').closest('.mb-4').classList.toggle('hidden', isAllDay);
+        document.getElementById('eventEnd').closest('.mb-4').classList.toggle('hidden', isAllDay);
     }
 });
