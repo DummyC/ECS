@@ -13,7 +13,14 @@
 
         <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/calendar.js'])
+        @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/calendar-ro.js'])
+
+        @if ( Route::currentRouteName() === 'dashboard')
+            @vite('resources/js/calendar.js')
+        @else
+            @vite('resources/js/calendar-ro.js')
+        @endif
+
         <style>
             /* Custom styles for event hover */
             .fc-event:hover {
