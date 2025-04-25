@@ -20,7 +20,7 @@
                         {{ __('Settings') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('user.dashboard')" :active="request()->routeIs('settings')">
+                    <x-nav-link :href="route('user.dashboard')" :active="request()->routeIs('user.dashboard')">
                         {{ __('User Calendar') }}
                     </x-nav-link>
                 </div>
