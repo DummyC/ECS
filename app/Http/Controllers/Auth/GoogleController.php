@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
@@ -22,6 +23,13 @@ class GoogleController extends Controller
             return redirect('/login')->withErrors(['email' => 'Only @bisu.edu.ph emails are allowed.']);
         }
 
+        // Define admin emails
+        $adminEmails = [
+            'admin@bisu.edu.ph',
+            'dean@bisu.edu.ph',
+            // Add more admin emails here
+        ];
+
         // Find or create the user
         $user = User::firstOrCreate(
             ['email' => $googleUser->email],
@@ -30,6 +38,12 @@ class GoogleController extends Controller
                 'password' => bcrypt(str()->random(16)), // Random password
             ]
         );
+
+        // Update admin status if email is in admin list
+        if (in_array($googleUser->email, $adminEmails) && !$user->is_admin) {
+            $user->update(['is_admin' => true]);
+        }
+
 
         // Log in the user
         Auth::login($user);
