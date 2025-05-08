@@ -11,11 +11,12 @@ class Event extends Model
 
     protected $table = 'events';
 
-    protected $fillable = ['title', 'description', 'start', 'end', 'allDay'];
+    protected $fillable = ['title', 'description', 'start', 'end', 'allDay', 'notified_at'];
 
     protected $casts = [
         'start' => 'datetime',
         'end' => 'datetime',
+        'notified_at' => 'datetime',
     ];
 
 }
