@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\GoogleController;
+use App\Http\Controllers\PushNotificationController;
 use App\Http\Controllers\EventController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,5 +36,8 @@ Route::middleware('auth')->group(function () {
 
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+
+Route::post('save-subscription', [PushNotificationController::class, 'saveSubscription'])->name('save.subscription');
+Route::post('send-notification', [PushNotificationController::class, 'sendNotification'])->name('send.notification');
 
 require __DIR__.'/auth.php';
