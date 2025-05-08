@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
         eventMouseEnter: function (info) {
             // Change cursor to pointer and darken background
             info.el.style.cursor = 'pointer';
-            info.el.style.backgroundColor = '#319795'; // Darkened color for hover
+            info.el.style.backgroundColor = '#1d4ed8'; // Darkened color for hover
         },
         eventMouseLeave: function (info) {
             // Reset cursor and background
