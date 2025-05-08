@@ -34,12 +34,7 @@
                         Enable Notifications
                     </button>
                 </div>
-                {{-- <div>
-                    <button onclick="sendNotification()"
-                    class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md transition-colors duration-200 ml-2">
-                    Test Notification
-                </button> --}}
-                </div>
+
                 <div id='calendar' class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8"></div>
             </div>
         </div>
