@@ -49,7 +49,8 @@ class CheckUpcomingEvents extends Command
     {
         $payload = json_encode([
             'title' => 'Upcoming Event: ' . $event->title,
-            'body' => "Event starts in 12 hours\n" . $event->description,
+            // 'body' => "Event starts in 12 hours\n" . $event->description,
+            'body' => route('user.dashboard', ['event' => $event->id] ),
             'url' => route('user.dashboard', ['event' => $event->id] ),
             'icon' => '/notification-icon.png',
         ]);
