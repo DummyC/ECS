@@ -5,15 +5,16 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 
 document.addEventListener('DOMContentLoaded', function () {
     var calendarEl = document.getElementById('calendar');
+    var isMobile = window.innerWidth < 640;
 
     var calendar = new Calendar(calendarEl, {
         plugins: [dayGridPlugin, interactionPlugin, timeGridPlugin],
         headerToolbar: {
             left: 'prev,next today',
             center: 'title',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            right: isMobile ? 'dayGridMonth' : 'dayGridMonth,timeGridWeek,timeGridDay'
         },
-        initialView: 'dayGridMonth',
+        initialView: isMobile ? 'dayGridMonth' : 'dayGridMonth',
         events: '/events',
         selectable: false,
         eventClick: function (info) {
@@ -81,6 +82,14 @@ document.addEventListener('DOMContentLoaded', function () {
             minute: 'numeric'
         });
     }
+
+    window.addEventListener('resize', function () {
+        var newIsMobile = window.innerWidth < 640;
+        if (newIsMobile !== isMobile) {
+            isMobile = newIsMobile;
+            calendar.changeView(isMobile ? 'dayGridMonth' : 'dayGridMonth');
+        }
+    });
 
 
 });
