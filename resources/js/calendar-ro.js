@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Example:
                 openEventModal(event);
             }
-        }, 500); // Adjust delay as needed
+        }, 1500); // Adjust delay as needed
     }
 
     function openEventModal(event) {
