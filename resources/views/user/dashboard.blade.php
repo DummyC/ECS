@@ -112,8 +112,7 @@
                 // You may need to adjust this depending on how you fetch events
                 setTimeout(function() {
                     // Find the event in FullCalendar and trigger the modal
-                    const calendarApi = calendar.getApi ? calendar.getApi() : calendar;
-                    const event = calendarApi.getEventById(eventId);
+                    const event = calendar.getEvents().find(e => e.id == eventId);
                     if (event) {
                         // Simulate event click to open modal
                         // You may need to call your modal-opening function directly

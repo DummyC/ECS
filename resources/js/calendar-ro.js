@@ -18,15 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
         events: '/events',
         selectable: false,
         eventClick: function (info) {
-            // console.log(info.event);
-            // // Open modal for viewing an existing event
-            // document.getElementById('eventModal').classList.remove('hidden');
-            // document.getElementById('eventModalLabel').innerText = info.event.title || 'N/A';
-            // document.getElementById('eventDescription').innerText = info.event.extendedProps.description || '';
-            // document.getElementById('eventStart').innerText = formatDateForInput(info.event.start) || 'N/A';
-            // document.getElementById('eventEnd').innerText = formatDateForInput(info.event.end) || 'N/A';
-            // document.getElementById('allDay').innerText = info.event.allDay ? 'Yes' : 'No';
-            // Set event title as modal label
+
             document.getElementById('eventModal').classList.remove('hidden');
             document.getElementById('eventModalLabel').innerText = info.event.title;
 
