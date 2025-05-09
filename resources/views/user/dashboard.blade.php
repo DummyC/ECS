@@ -105,22 +105,7 @@
                 notificationPrompt.classList.add('hidden');
             }
 
-            const urlParams = new URLSearchParams(window.location.search);
-            const eventId = urlParams.get('event');
-            if (eventId) {
-                // Wait for calendar to load, then open modal for this event
-                // You may need to adjust this depending on how you fetch events
-                setTimeout(function() {
-                    // Find the event in FullCalendar and trigger the modal
-                    const event = calendar.getEvents().find(e => e.id == eventId);
-                    if (event) {
-                        // Simulate event click to open modal
-                        // You may need to call your modal-opening function directly
-                        // Example:
-                        openEventModal(event);
-                    }
-                }, 500); // Adjust delay as needed
-            }
+
         });
 
         function saveSub(subscription) {
@@ -157,20 +142,7 @@
                 .catch(error => console.error("Error sending notification:", error));
         }
 
-        function openEventModal(event) {
-            document.getElementById('eventModalLabel').innerText = event.title;
-            document.getElementById('eventDescription').innerText = event.extendedProps.description || '';
 
-            const startDate = formatDateTime(info.event.start);
-            const endDate = formatDateTime(info.event.end);
-
-            document.getElementById('eventStart').innerText = startDate;
-            document.getElementById('eventEnd').innerText = endDate;
-            document.getElementById('eventDateSeparator').classList.toggle('hidden', info.event.allDay);
-            document.getElementById('eventEnd').classList.toggle('hidden', info.event.allDay);
-
-            document.getElementById('eventModal').classList.remove('hidden');
-        }
 
         function formatDateTime(date) {
             if (!date) return 'N/A';

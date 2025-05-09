@@ -51,6 +51,38 @@ document.addEventListener('DOMContentLoaded', function () {
 
     calendar.render();
 
+    const urlParams = new URLSearchParams(window.location.search);
+    const eventId = urlParams.get('event');
+    if (eventId) {
+        // Wait for calendar to load, then open modal for this event
+        // You may need to adjust this depending on how you fetch events
+        setTimeout(function () {
+            // Find the event in FullCalendar and trigger the modal
+            const event = calendar.getEvents().find(e => e.id == eventId);
+            if (event) {
+                // Simulate event click to open modal
+                // You may need to call your modal-opening function directly
+                // Example:
+                openEventModal(event);
+            }
+        }, 500); // Adjust delay as needed
+    }
+
+    function openEventModal(event) {
+            document.getElementById('eventModalLabel').innerText = event.title;
+            document.getElementById('eventDescription').innerText = event.extendedProps.description || '';
+
+            const startDate = formatDateTime(event.start);
+            const endDate = formatDateTime(event.end);
+
+            document.getElementById('eventStart').innerText = startDate;
+            document.getElementById('eventEnd').innerText = endDate;
+            document.getElementById('eventDateSeparator').classList.toggle('hidden', event.allDay);
+            document.getElementById('eventEnd').classList.toggle('hidden', event.allDay);
+
+            document.getElementById('eventModal').classList.remove('hidden');
+        }
+
     // Close modal
     document.getElementById('closeModal').addEventListener('click', function () {
         document.getElementById('eventModal').classList.add('hidden');
