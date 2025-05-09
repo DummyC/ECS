@@ -4,7 +4,7 @@ self.addEventListener('push', (event) => {
     event.waitUntil(
         self.registration.showNotification(notificationData.title || 'Notification', {
             body: notificationData.body || 'You have a new notification.',
-            icon: notificationData.icon || '/images/icon.png',
+            icon: notificationData.icon || '/notification-icon.png',
             data: notificationData.data || {},
             actions: notificationData.actions || []
         })
