@@ -24,7 +24,7 @@ class EventWebPushNotification extends Notification
     {
         return (new WebPushMessage)
             ->title('Upcoming Event: ' . $this->event->title)
-            ->icon('/notification-icon.png')
+            ->icon('/ecs_notification-icon.png')
             ->body('Event starts in 12 hours')
             ->action('View Event', 'view_event')
             ->data(['event_id' => $this->event->id]);

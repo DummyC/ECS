@@ -54,7 +54,7 @@ class CheckUpcomingEvents extends Command
             'data' => [
                 'url' => route('user.dashboard', ['event' => $event->id])
             ],
-            'icon' => '/notification-icon.png',
+            'icon' => '/ecs_notification-icon.png',
         ]);
 
         $pushNotifications = PushNotification::all();
